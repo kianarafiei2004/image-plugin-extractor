@@ -1,86 +1,123 @@
 # Image Plugin Extractor for WooCommerce & WordPress
 
-> **نسخه:** 1.0.1 | **توسعه‌دهنده:** [kiana](https://github.com/kianarafiei2004) | **لایسنس:** GPLv2 or later | **پیش‌نیاز:** وردپرس 5.6+ / ووکامرس 5.0+
+[![Version](https://img.shields.io/badge/version-1.0.1-blue.svg)](https://github.com/kianarafiei2004/image-plugin-extractor/releases)
+[![WordPress](https://img.shields.io/badge/WordPress-5.6%2B-21759b.svg)](https://wordpress.org)
+[![WooCommerce](https://img.shields.io/badge/WooCommerce-5.0%2B-96588a.svg)](https://woocommerce.com)
+[![PHP](https://img.shields.io/badge/PHP-7.4%20--%208.3%2B-777bb4.svg)](https://php.net)
+[![License](https://img.shields.io/badge/license-GPLv2-green.svg)](https://www.gnu.org/licenses/gpl-2.0.html)
+[![Author](https://img.shields.io/badge/author-kiana-orange.svg)](https://github.com/kianarafiei2004)
 
-پلاگین رسمی، سبک‌وزن و فوق‌پیشرفته استخراج کاتالوگ و تصاویر ووکامرس، ممیزی هوشمند لینک‌سازی داخلی مقالات، کشف فرصت‌های طلایی سئو با الگوریتم‌های پردازش زبان فارسی، بدون افت سرعت و بدون ریسک سرریز حافظه سرور.
-
----
-
-## 🚀 ویژگی‌های کلیدی
-- **اسکن دسته‌ای ناهمگام (AJAX Batch Processing):** پردازش در بسته‌های ۲۵تایی بدون کرش، بدون محدودیت زمانی (`Execution Timeout`) و با مصرف رم زیر ۳۲ مگابایت حتی در سایت‌هایی با بیش از ۱۰۰۰ محصول و ۵۰۰۰ مقاله وبلاگ.
-- **موتور هوشمند نرمال‌سازی فارسی:** یکپارچه‌سازی خودکار حروف عربی و فارسی («ی/ي» و «ک/ك»)، حذف اعراب و نشانه‌ها، پاکسازی نیم‌فاصله‌های مجازی (ZWNJ `\u200c`) و رفع تفاوت‌های تایپی در مقالات.
-- **قفل مرز واژه یونیکد (Unicode Word Boundary):** جلوگیری مطلق از تطابق‌های کاذب (مانند تشخیص نادرست واژه‌های کوتاه داخل کلمات بلندتر با ریجکس `(?<![\p{L}\p{N}])TERM(?![\p{L}\p{N}])/u`).
-- **استخراج موقعیت مکانی جمله (Context Snippet):** استخراج ۶۰ کاراکتر پیش و پس از عبارت در متن مقاله به صورت بریده‌متن (Snippet) جهت مکان‌یابی فوری توسط نویسنده در ویرایشگر.
-- **استخراج انکرتکست پیوندهای فعال (Anchor Text):** استخراج خودکار متن لنگر لینک‌هایی که هم‌اکنون در مقالات به محصول پیوند داده شده‌اند.
-- **پشتیبانی خودکار از برچسب‌های محصول به عنوان مترادف (Synonyms):** اسکن هوشمند تگ‌های ووکامرس (`product_tag`) در صورت عدم وجود نام کامل محصول در متن مقاله.
-- **اتصال مستقیم و امن به گوتنبرگ با ۱ کلیک (No Auto-Linker Policy):** عدم استفاده از درج خودکار خطرناک در دیتابیس؛ جایگزینی با دکمه اتصال مستقیم به صفحه ویرایش مقاله (`admin_url('post.php?post=X&action=edit')`) جهت حفظ یکپارچگی بلاک‌های گوتنبرگ.
-- **پیش‌کش دو لایه با ترنزینت (Dual Transient Cache):** پیش‌کش ۱ ساعته متون وبلاگ جهت صفر کردن کوئری دیتابیس در چرخه‌ها و کش ۷ روزه نتایج اسکن جهت لود صدم‌ثانیه‌ای پیشخوان.
-- **دانلود مستقیم تصاویر اصلی محصول:** امکان دانلود فوری عکس باکیفیت و رزولوشن اصلی محصولات از جدول داده‌ها.
-- **نشان‌های وضعیت تثبیت‌شده و خوانا (Status Badges):** نمایش منظم وضعیت‌ها (فرصت سئو، لینک فعال، بدون اشاره) همراه با آیکون‌های وکتور بدون شکستگی یا فشردگی متن.
-- **خروجی منعطف و استاندارد:** استریم آنی فایل اکسل CSV با انکودینگ ضد به‌هم‌ریختگی فارسی (`UTF-8 BOM`) و خروجی ساختاریافته JSON.
-- **طراحی مدرن و ایزوله (Nordic Teal & Crimson UI):** بوم کرم روشن `#EAEAE8`، کارت‌های اقیانوسی `#0E2931`، خطوط موج‌دار و دکمه‌های سرخ شرابی `#861211`.
+An enterprise-grade, lightweight, and high-performance WordPress & WooCommerce plugin for automated catalog extraction, high-resolution media management, and intelligent internal linking SEO audits with Persian and Arabic NLP word-boundary matching.
 
 ---
 
-## 📁 ساختار پکیج
+## 🚀 Key Features
+
+- **Asynchronous AJAX Batch Processing:**
+  Audits 1,000+ products in chunked batches of 25 items (`IPE_BATCH_SIZE = 25`). Guarantees zero execution timeouts (`max_execution_time`) and maintains memory consumption under 32 MB even on shared hosting environments.
+
+- **Advanced Persian & Arabic NLP Normalization:**
+  Automatically unifies letter variants (`ي` → `ی`, `ك` → `ک`), strips diacritics/tanween/tashkeel, purges invisible zero-width non-joiners (ZWNJ `\u200c`), and cleans typographical variations between articles and product titles.
+
+- **Unicode Word Boundary Lock:**
+  Uses strict Unicode lookbehind/lookahead regular expressions (`(?<![\p{L}\p{N}])TERM(?![\p{L}\p{N}])/u`) to prevent false-positive partial matches (e.g., matching a short keyword inside a longer composite word).
+
+- **Context Snippet Extraction (60 Chars):**
+  Extracts 60 characters before and after the matched keyword in blog post bodies, rendering an inline context preview so copywriters and SEO specialists can instantly locate sentences in the editor.
+
+- **Active Link Anchor Text Extraction:**
+  Scans existing links pointing to product URLs and extracts the exact anchor text used, reporting both active internal links and unlinked opportunities.
+
+- **WooCommerce Product Tags as Secondary Synonyms:**
+  Automatically falls back to `product_tag` terms if the full product name is not found in an article, maximizing internal link equity discovery.
+
+- **Safe 1-Click Direct Gutenberg Linking (No-Auto-Linker Policy):**
+  Avoids risky automated database alterations and regex replacements that break Gutenberg block comments (`<!-- wp:... -->`). Instead, provides a direct 1-click edit button (`admin_url('post.php?post=X&action=edit')`) for safe human review.
+
+- **Dual-Layer Transient Caching:**
+  - **1-Hour Blog Post Index Transient (`IPE_TEMP_POSTS_TRANSIENT`):** Eliminates redundant post queries across chunk cycles.
+  - **7-Day Audit Results Transient (`IPE_RESULTS_TRANSIENT`):** Enables sub-second dashboard reload times without re-scanning.
+
+- **Direct High-Resolution Image Downloads:**
+  One-click full-resolution image downloads directly from the data table without entering the WordPress Media Library.
+
+- **Smooth 4.2x Hover Zoom:**
+  Pure CSS hardware-accelerated 4.2x zoom on product thumbnails for rapid visual asset verification.
+
+- **Export Standards (Excel CSV & JSON):**
+  - Instant streaming CSV with UTF-8 Byte Order Mark (`\xEF\xBB\xBF`) for clean rendering in Microsoft Excel without character corruption.
+  - Complete structured JSON export for LLM and automated AI pipelines.
+
+- **Nordic Teal & Crimson UI Design System:**
+  Built with isolated CSS scoping (`.ipe-dashboard-wrap`): Light Cream canvas (`#EAEAE8`), Deep Pine Teal cards (`#0E2931`), Muted Teal accents (`#2B7574`), and Crimson Red status indicators (`#861211`).
+
+---
+
+## 📁 Repository Structure
+
 ```text
 image-plugin-extractor/
-├── image-plugin-extractor.php       # هسته اصلی شیءگرا (OOP)، اسکنر، هوک‌های AJAX و خروجی‌ها
-├── README.md                        # شناسنامه و راهنمای کامل افزونه (همین سند)
-├── PLUGIN-SPECIFICATION.md          # سند مهندسی مشخصات فنی، معماری و الگوریتم‌ها
-├── readme.txt                       # مستندات استاندارد برای مخزن رسمی وردپرس
-└── preview-dashboard.html           # پیش‌نمایش تعاملی و مستقل داشبورد در مرورگر
+├── image-plugin-extractor.php       # Core OOP plugin (Singleton Bootstrap, Scanner, Admin & Exporter)
+├── README.md                        # Official repository documentation & specification
+├── PLUGIN-SPECIFICATION.md          # Technical architecture dossier & engineering specifications
+├── readme.txt                       # Standard WordPress.org repository documentation
+└── preview-dashboard.html           # Standalone interactive browser preview dashboard
 ```
 
 ---
 
-## 💻 نحوه نصب و استفاده
+## 💻 Installation & Usage
 
-### ۱. نصب در وردپرس
-1. فایل زیپ `image-plugin-extractor.zip` را از پنل مدیریت وردپرس مسیر **افزونه‌ها > افزودن افزونه تازه > بارگذاری افزونه** آپلود و فعال کنید.
-2. از منوی مدیریت وردپرس، گزینه جدید **«استخراج تصاویر و سئو»** را انتخاب کنید.
+### 1. WordPress Installation
+1. Download `image-plugin-extractor.zip` from the [Latest Release](https://github.com/kianarafiei2004/image-plugin-extractor/releases/latest).
+2. In your WordPress admin panel, navigate to **Plugins > Add New > Upload Plugin**.
+3. Choose the ZIP file and click **Install Now**, then click **Activate Plugin**.
+4. Access the dashboard from the admin sidebar under **Image & SEO Extractor**.
 
-### ۲. اجرای اسکن و تحلیل سئو
-- روی دکمه **«شروع اسکن دسته‌ای»** کلیک کنید.
-- سیستم به صورت خودکار در بسته‌های ۲۵تایی، کاتالوگ محصولات را با تمامی مقالات مقایسه کرده و نوار پیشرفت را به صورت زنده نمایش می‌دهد.
-- پس از پایان، جدول فرصت‌های طلایی لینک‌سازی (متن بدون لینک) و پیوندهای برقرارشده تکمیل می‌شود.
+### 2. Running an Audit
+1. Click **Start Batch Scan**.
+2. The asynchronous batch scanner will iterate through the WooCommerce catalog in 25-item chunks, displaying live progress.
+3. Switch between tabs: **All Products**, **Only SEO Opportunities**, and **Active Links**.
+4. Inspect the context snippet and click **Edit in Gutenberg** to open the post and insert internal links safely.
 
-### ۳. بررسی و اتصال به گوتنبرگ
-- بر روی تب **«فقط فرصت‌های سئو»** کلیک کنید.
-- تکه‌متن موقعیت عبارت در مقاله را مطالعه کرده و با کلیک روی دکمه سرخ‌رنگ **«ویرایش در گوتنبرگ»** مستقیماً به صفحه ویرایش مقاله رفته و پیوند داخلی محصول را درج نمایید.
-
-### ۴. دریافت خروجی‌ها
-- با کلیک روی **«خروجی اکسل (CSV)»** گزارش تفکیک‌شده شامل انکرتکست و موقعیت را دانلود کنید.
-- با کلیک روی **«خروجی JSON»** داده‌های ساختاریافته را برای هوش مصنوعی یا سیستم‌های خودکار دریافت نمایید.
-- در ستون تصویر شاخص، با کلیک روی آیکون دانلود، عکس محصول با ابعاد اورجینال را دانلود کنید.
+### 3. Exporting Reports & Assets
+- Click **Excel (CSV)** to download the BOM-encoded spreadsheet.
+- Click **JSON Archive** for structured data integration.
+- Click the download icon next to any thumbnail to save the original high-resolution image.
 
 ---
 
-## ⚙️ مشخصات فنی و سیستم بهینه‌سازی سرور
+## ⚙️ Technical Specifications & Server Protections
 
-| مولفه | مقدار / مکانیزم | توضیح فنی |
+| Architecture Component | Implementation Details | Operational Server Impact |
 | :--- | :--- | :--- |
-| **سایز دسته (Batch Size)** | ۲۵ محصول در هر چرخه | بدون درگیر شدن تایم‌اوت وب‌سرور |
-| **توقف کش شیء وردپرس** | `wp_suspend_cache_addition(true)` | مهار مصرف رم توسط ردیس یا مم‌کش در فرآیندهای سنگین |
-| **پاکسازی حافظه (GC)** | `unset()` & `gc_collect_cycles()` | آزادسازی فوری حافظه موقت پس از اتمام پردازش هر دسته |
-| **کنترل سطح دسترسی** | `current_user_can('manage_options')` | محدودسازی اکشن‌های حساس و خروجی‌ها فقط برای مدیر کل سایت |
-| **ایمن‌سازی درخواست‌ها** | `check_ajax_referer` / WP Nonce | مقابله قطعی با حملات جعل درخواست بین‌سایتی (CSRF) |
+| **Batch Processing** | `IPE_BATCH_SIZE = 25` | Prevents PHP timeout (`max_execution_time`) |
+| **Object Cache Guard** | `wp_suspend_cache_addition(true)` | Prevents Redis/Memcached RAM exhaustion during bulk scans |
+| **Garbage Collection** | `unset()` & `gc_collect_cycles()` | Keeps memory usage under 32 MB across thousands of products |
+| **Role & Capability Check**| `current_user_can('manage_options')` | Restricts access exclusively to site administrators |
+| **Request Security** | `check_ajax_referer` / WP Nonce | Prevents Cross-Site Request Forgery (CSRF) |
 
 ---
 
-## 📝 تاریخچه نگارش‌ها (Changelog)
+## 📝 Changelog
 
-### نسخه 1.0.1 (جاری)
-- اصلاح کامل چیدمان ستون و نشان‌های وضعیت (Status Badges) و اضافه شدن آیکون‌های وکتور اختصاصی.
-- افزودن قابلیت استخراج ۶۰ کاراکتر موقعیت مکانی جمله (Context Snippet) قبل و بعد از عبارت.
-- استخراج انکرتکست در مقالات لینک‌دار.
-- بزرگنمایی ۴.۲ برابری هاور زوم تصاویر شاخص.
-- دانلود مستقیم تصاویر اصلی و باکیفیت محصول از جدول داده‌ها.
+### v1.0.1 (Current Release)
+- Completely fixed Status column layout (`.ipe-status-th`, `.ipe-status-cell`) with vector icons and text wrap prevention.
+- Added 60-character context snippet extraction (`extract_snippet`).
+- Added anchor text detection for active internal links.
+- Added direct 1-click full-resolution image downloads.
+- Enhanced pure-CSS thumbnail hover zoom to 4.2x.
+- Registered author meta as `kiana` with GitHub repository integration.
 
-### نسخه 1.0.0
-- انتشار اولیه افزونه با معماری سینگلتون شیءگرا، اسکنر دسته‌ای ۲۵تایی و اتصال مستقیم به گوتنبرگ.
+### v1.0.0
+- Initial production release featuring Singleton architecture, 25-item AJAX chunking, Gutenberg direct edit integration, and dual-layer transient caching.
 
 ---
 
-## 👤 توسعه‌دهنده (Author)
-طراحی و توسعه توسط **kiana** — [https://github.com/kianarafiei2004](https://github.com/kianarafiei2004)
+## 👤 Author & Maintainer
+
+Developed and maintained by **kiana** — [GitHub Profile](https://github.com/kianarafiei2004)
+
+## 📄 License
+
+This project is open-source and licensed under the **GNU General Public License v2 or later** (GPLv2+).
