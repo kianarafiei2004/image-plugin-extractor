@@ -1,0 +1,5 @@
+image-plugin-extractor.zip
+image-plugin-extractor/
+*.tmp
+.DS_Store
+Thumbs.db
